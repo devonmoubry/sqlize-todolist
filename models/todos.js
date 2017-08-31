@@ -1,7 +1,10 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Todos = sequelize.define('Todos', {
-    title: DataTypes.STRING,
+    title: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
     details: DataTypes.TEXT,
     completed: DataTypes.DATE
   }, {
