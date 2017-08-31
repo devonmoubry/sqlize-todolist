@@ -13,7 +13,7 @@
 - `createdb <database name>`
 - `sequelize db:migrate`
 - to create a model:
-  - `sequelize model:create --name Todos --attributes 'title:string details:text completed:timestamp'`
+  - `sequelize model:create --name Todos --attributes 'title:string details:text completed:date'`
   - `sequelize db:migrate` <- update data
 - `touch app.js`
 - `touch README.md`
@@ -60,7 +60,11 @@
           process.exit(0);
         }, 1000)
       });`
-
+- in todos.js
+  - `title:  {
+    type: Sequelize.STRING,
+    allowNull: false
+  },`
 
 ## Resources:
 
