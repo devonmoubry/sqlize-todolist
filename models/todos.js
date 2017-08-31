@@ -2,7 +2,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Todos = sequelize.define('Todos', {
     title: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     },
     details: DataTypes.TEXT,
