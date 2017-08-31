@@ -21,15 +21,12 @@
 - `cd views`
 - `touch index.mustache`
 - `touch todos.mustache`
-- `touch create.mustache`
-- `touch delete.mustache`
 - `touch update.mustache`
 - in app.js:
   -  `const express = require('express'),
         mustacheExpress = require('mustache-express'),
         bodyParser = require('body-parser'),
-        sequelize = require('sequelize')
-        models = require("./models");
+        models = require('./models');
 
       const app = express();
 
@@ -42,7 +39,7 @@
       }));
 
       app.get('/', function(req, res) {
-          res.render("index");
+          res.render('index');
       })
 
       app.listen(3000, function() {
@@ -60,9 +57,14 @@
           process.exit(0);
         }, 1000)
       });`
-- in `todos.js` & `migrations/<timestamp>-create-todos.js`
+- in `migrations/<timestamp>-create-todos.js`
   - `title:  {
     type: Sequelize.STRING,
+    allowNull: false
+  },`
+- in `todos.js`
+  - `title: {
+    type: DataTypes.STRING,
     allowNull: false
   },`
 
@@ -72,7 +74,7 @@
 - Assignment: [Build a todo list](https://newline.theironyard.com/courses/10/projects/76)
 - Assignment: [Revisit Todo List with Sequelize](https://newline.theironyard.com/courses/10/projects/111)
 - Tutorial: [Scotch.io](https://scotch.io/tutorials/getting-started-with-node-express-and-postgres-using-sequelize)
-- Tutorial: [SequelizeJs](ttp://docs.sequelizejs.com/manual/tutorial/instances.html)
+- Tutorial: [SequelizeJs](http://docs.sequelizejs.com/manual/tutorial/instances.html)
 
 ## Features:
 
