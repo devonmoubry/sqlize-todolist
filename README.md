@@ -60,11 +60,12 @@
           process.exit(0);
         }, 1000)
       });`
-- in todos.js
+- in `todos.js` & `migrations/<timestamp>-create-todos.js`
   - `title:  {
     type: Sequelize.STRING,
     allowNull: false
   },`
+
 
 ## Resources:
 
