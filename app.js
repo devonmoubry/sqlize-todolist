@@ -15,8 +15,16 @@ app.use(
   })
 );
 
-app.get('/', function(req, res) {
-    res.render("index");
+app.get("/", function(req, res) {
+  res.render("index");
+});
+
+app.get("/todos", function(req, res) {
+  models.Todos.findAll().then(function(todos) {
+    res.render("todos", { todos: todos });
+  });
+});
+
 })
 
 app.listen(3000, function() {
