@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>To Do List</title>
+    <style type="text/css">
+      .todo-tasks, .completed-tasks {
+        list-style-type: none;
+        padding-left: 0;
+      }
+      .todo-tasks li {
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Update To Do</h1>
+
+    <div class="page">
+      <div class="update-form">
+          <div>
+            {{#todo}}
+            <form class="" action="/todos/{{id}}/update" method="post">
+              <input id="addToDoTitle" type="text" name="todoTitle" value="{{title}}"/>
+              <input id="addToDoDetails" type="text" name="todoDetails" value="{{details}}" />
+              <input id="addToDoButton" type="submit" name="updateTask" value="UPDATE">
+            </form>
+            {{/todo}}
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

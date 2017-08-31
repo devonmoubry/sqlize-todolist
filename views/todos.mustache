@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>To Do List</title>
+    <style type="text/css">
+      .todo-tasks, .completed-tasks {
+        list-style-type: none;
+        padding-left: 0;
+      }
+      .todo-tasks li {
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Add To Do</h1>
+
+    <div class="page">
+      <div class="add-form">
+          <div>
+            <form class="" action="/todos" method="post">
+              <input id="addToDoTitle" type="text" name="todoTitle" placeholder="What needs to be done?" />
+              <input id="addToDoDetails" type="text" name="todoDetails" placeholder="Tell me more..." />
+              <input id="addToDoButton" type="submit" name="addTask" value="ADD">
+            </form>
+          </div>
+          <h2>Todo List</h2>
+          <ul class="todo-tasks">
+            {{#todos}}
+              {{^completed}}
+                <li>
+                  <form class="" action="/todos/{{id}}/destroy" method="post">
+                    <input type="checkbox" name="completed" id="{{id}}" class="checkboxInput" onchange="completeTodo(this)">
+                    <label for="{{id}}"><a href="/todos/{{id}}/updatepage">{{title}} - {{details}}</a></label>
+                    <input id="deleteToDoButton" type="submit" name="deleteTask" value="DELETE">
+                  </form>
+                </li>
+              {{/completed}}
+            {{/todos}}
+            <h2>Completed</h2>
+            {{#todos}}
+              {{#completed}}
+                <li>
+                  <form class="" action="/todos/{{id}}/destroy" method="post">
+                    <input type="checkbox" name="completed" id="{{id}}" class="checkboxInput" onchange="undoCompleteTodo(this)" checked>
+                    <label for="{{id}}">{{title}} - {{details}}</label>
+                    <input id="deleteToDoButton" type="submit" name="deleteTask" value="DELETE">
+                  </form>
+                </li>
+              {{/completed}}
+            {{/todos}}
+            {{#errors}}
+            <p>{{.}}</p>
+            {{/errors}}
+            {{^todos}}
+              <li>Mission Accomplished</li>
+            {{/todos}}
+          </ul>
+      </div>
+    </div>
+    <script>
+      window.completeTodo = function(todo) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/todos/' + todo.id + '/complete');
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.onreadystatechange = function () {
+          console.log('whatever');
+          if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            window.location.reload();
+          }
+        };
+        xhr.send();
+      }
+
+      window.undoCompleteTodo = function(todo) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/todos/' + todo.id + '/undoComplete');
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.onreadystatechange = function () {
+          console.log('whatever');
+          if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            window.location.reload();
+          }
+        };
+        xhr.send();
+      }
+
+      window.updateTodo = function (todo) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/todos/' + todo.id)
+      }
+
+    </script>
+  </body>
+</html>
